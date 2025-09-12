@@ -1,0 +1,86 @@
+# DSL - Máquina Expendedora
+# Ejemplos de sintaxis básica (actualizado con espacios físicos)
+
+====================================
+Operaciones del Cliente
+====================================
+
+INSERT 50
+    Inserta dinero en la máquina.
+
+BALANCE
+    Muestra el saldo actual del usuario.
+
+SELECT A4
+    Selecciona un espacio de la máquina (ej: A4, B9).
+
+PRICE
+    Muestra el precio del producto en el espacio seleccionado.
+
+DISPENSE
+    Entrega el producto seleccionado.
+
+CHANGE
+    Devuelve el cambio si existe.
+
+CANCEL
+    Cancela la operación y devuelve el dinero.
+
+====================================
+Configuración de Productos y Espacios
+====================================
+
+ADD_PRODUCT COFFEE
+    Agrega un nuevo producto al catálogo.
+
+REMOVE_PRODUCT COFFEE
+    Elimina un producto del catálogo.
+
+SET_PRICE COFFEE 25
+    Establece el precio de un producto.
+
+SET_SPACE A4 COFFEE
+    Asigna un producto a un espacio físico (ej: A4, B9).
+
+SET_STOCK A4 100
+    Define la cantidad disponible en un espacio físico.
+
+LIST_PRODUCTS
+    Lista todos los productos disponibles.
+
+====================================
+Configuración de la Máquina
+====================================
+
+SET_CAPACITY 100
+    Establece la capacidad máxima de la máquina.
+
+SET_CURRENCY MXN
+    Define la moneda en la que opera la máquina.
+
+STATUS
+    Muestra el estado actual de la máquina.
+
+RESET
+    Reinicia la máquina a la configuración base.
+
+====================================
+Ejemplo de uso - Cliente
+====================================
+
+INSERT 50
+BALANCE
+SELECT A4
+PRICE
+DISPENSE
+CHANGE
+
+====================================
+Ejemplo de uso - Administrador
+====================================
+
+ADD_PRODUCT COFFEE
+SET_PRICE COFFEE 25
+SET_SPACE A4 COFFEE
+SET_STOCK A4 100
+STATUS

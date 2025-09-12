@@ -1,12 +1,13 @@
-//** Este es un comentario inicial **//
-INSERT 20
-BALANCE
-SELECT COKE
+//** Cliente **//
+INSERT 50
+SELECT A4
 PRICE
 DISPENSE
 CHANGE
-//** Configuración de la máquina **//
-ADD_PRODUCT CHIPS
-SET_PRICE CHIPS 15
-SET_STOCK CHIPS 30
+
+//** Configuración **//
+ADD_PRODUCT COFFEE
+SET_PRICE COFFEE 25
+SET_SPACE A4 COFFEE
+SET_STOCK A4 100
 STATUS

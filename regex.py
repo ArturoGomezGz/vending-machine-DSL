@@ -1,21 +1,26 @@
 import re
 
 # ==============================
-# Regex del DSL
+# Regex del DSL (actualizado)
 # ==============================
 
 # Palabras reservadas
-regex_keywords = re.compile(r"(INSERT|BALANCE|SELECT|PRICE|DISPENSE|CHANGE|CANCEL|"
-                            r"ADD_PRODUCT|REMOVE_PRODUCT|SET_PRICE|SET_STOCK|"
-                            r"LIST_PRODUCTS|SET_CAPACITY|SET_CURRENCY|STATUS|RESET)")
+regex_keywords = re.compile(
+    r"(INSERT|BALANCE|SELECT|PRICE|DISPENSE|CHANGE|CANCEL|"
+    r"ADD_PRODUCT|REMOVE_PRODUCT|SET_PRICE|SET_STOCK|LIST_PRODUCTS|"
+    r"SET_SPACE|SET_CAPACITY|SET_CURRENCY|STATUS|RESET)"
+)
 
-# Identificadores de productos (ej: COKE, WATER, CHIPS)
-regex_identifier = re.compile(r"[A-Z][A-Z0-9_]*")
+# Identificadores de productos (ej: COFFEE, CHIPS, WATER)
+regex_product = re.compile(r"[A-Z][A-Z0-9_]*")
 
-# Números (enteros y decimales) → primero enteros y después decimales
+# Identificadores de espacios físicos (ej: A4, B9, C12)
+regex_space = re.compile(r"[A-Z][0-9]+")
+
+# Números (enteros y decimales)
 regex_number = re.compile(r"[0-9]+|[0-9]+\.[0-9]+")
 
-# Comentarios (formato //** comentario **//)
+# Comentarios (líneas que empiezan con //** y terminan con **//)
 regex_comment = re.compile(r"//\*\*.*\*\*//")
 
 # ==============================
@@ -23,25 +28,26 @@ regex_comment = re.compile(r"//\*\*.*\*\*//")
 # ==============================
 def lexer(script: str):
     tokens = []
-    # Dividir el script en líneas
     for line in script.splitlines():
         line = line.strip()
         if not line:
-            continue  # ignorar líneas vacías
+            continue
 
-        # Detectar comentarios
+        # Comentarios
         if regex_comment.fullmatch(line):
             tokens.append(("COMMENT", line))
             continue
 
-        # Dividir por espacios para analizar palabra por palabra
+        # Analizar palabra por palabra
         for word in line.split():
             if regex_keywords.fullmatch(word):
                 tokens.append(("KEYWORD", word))
             elif regex_number.fullmatch(word):
                 tokens.append(("NUM", word))
-            elif regex_identifier.fullmatch(word):
-                tokens.append(("ID", word))
+            elif regex_space.fullmatch(word):
+                tokens.append(("SPACE", word))
+            elif regex_product.fullmatch(word):
+                tokens.append(("PRODUCT", word))
             else:
                 tokens.append(("UNKNOWN", word))
     return tokens
@@ -50,10 +56,9 @@ def lexer(script: str):
 # Ejemplo de uso
 # ==============================
 if __name__ == "__main__":
-    # Leer el script desde el archivo 'reguex-input.txt'
-    with open("reguex-input.txt", "r", encoding="utf-8") as f:
+    with open("reguex-input.txt", encoding="utf-8") as f:
         script = f.read()
-
+        
     result = lexer(script)
     for token in result:
         print(token)

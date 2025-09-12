@@ -51,14 +51,3 @@ def lexer(script: str):
             else:
                 tokens.append(("UNKNOWN", word))
     return tokens
-
-# ==============================
-# Ejemplo de uso
-# ==============================
-if __name__ == "__main__":
-    with open("reguex-input.txt", encoding="utf-8") as f:
-        script = f.read()
-        
-    result = lexer(script)
-    for token in result:
-        print(token)

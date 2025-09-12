@@ -78,15 +78,3 @@ class Parser:
             self.match("KEYWORD", "RESET")
         else:
             raise SyntaxError(f"Sentencia desconocida en {tok_val}")
-
-
-# ==============================
-# Ejemplo de uso
-# ==============================
-if __name__ == "__main__":
-
-    with open("input.txt", encoding="utf-8") as f:
-        script = f.read()
-        tokens = lexer(script)
-        parser = Parser(tokens)
-        parser.parse_program()

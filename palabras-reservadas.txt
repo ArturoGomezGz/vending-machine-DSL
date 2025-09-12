@@ -1,0 +1,23 @@
+# Palabras reservadas DSL - Máquina expendedora
+
+# Operaciones del cliente
+INSERT
+BALANCE
+SELECT
+PRICE
+DISPENSE
+CHANGE
+CANCEL
+
+# Configuración de productos
+ADD_PRODUCT
+REMOVE_PRODUCT
+SET_PRICE
+SET_STOCK
+LIST_PRODUCTS
+
+# Configuración de la máquina
+SET_CAPACITY
+SET_CURRENCY
+STATUS
+RESET

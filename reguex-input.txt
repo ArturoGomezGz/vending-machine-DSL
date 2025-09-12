@@ -1,0 +1,12 @@
+//** Este es un comentario inicial **//
+INSERT 20
+BALANCE
+SELECT COKE
+PRICE
+DISPENSE
+CHANGE
+//** Configuración de la máquina **//
+ADD_PRODUCT CHIPS
+SET_PRICE CHIPS 15
+SET_STOCK CHIPS 30
+STATUS

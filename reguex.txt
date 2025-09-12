@@ -1,0 +1,13 @@
+# Regex - DSL Máquina Expendedora
+
+# Palabras reservadas (keywords)
+(INSERT|BALANCE|SELECT|PRICE|DISPENSE|CHANGE|CANCEL|ADD_PRODUCT|REMOVE_PRODUCT|SET_PRICE|SET_STOCK|LIST_PRODUCTS|SET_CAPACITY|SET_CURRENCY|STATUS|RESET)
+
+# Identificadores de productos (ej: COKE, WATER, CHIPS)
+[A-Z][A-Z0-9_]*
+
+# Números (enteros y decimales)
+[0-9]+|[0-9]+\.[0-9]+
+
+# Comentarios (líneas que empiezan con //** y terminan con **//)
+//\*\*.*\*\*//

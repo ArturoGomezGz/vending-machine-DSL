@@ -5,13 +5,20 @@ from lexer import lexer
 # ==============================
 class Parser:
     def __init__(self, tokens):
+        # Inicializa el parser con la lista de tokens y la posición actual
         self.tokens = tokens
         self.pos = 0
 
     def current(self):
+        # Retorna el token actual o EOF si se terminó la lista
         return self.tokens[self.pos] if self.pos < len(self.tokens) else ("EOF", None)
 
     def match(self, expected_type=None, expected_value=None):
+        """
+        Verifica que el token actual coincida con el tipo y/o valor esperado.
+        Si no coincide, lanza un error de sintaxis.
+        Avanza la posición del parser.
+        """
         tok_type, tok_val = self.current()
         if expected_type and tok_type != expected_type:
             raise SyntaxError(f"Se esperaba tipo {expected_type}, pero se encontró {tok_type} ({tok_val})")
@@ -21,11 +28,18 @@ class Parser:
         return tok_type, tok_val
 
     def parse_program(self):
+        """
+        Analiza el programa completo recorriendo todos los tokens y procesando cada sentencia.
+        """
         while self.current()[0] != "EOF":
             self.parse_statement()
         print("Programa válido ✅")
 
     def parse_statement(self):
+        """
+        Analiza una sentencia individual según el tipo y valor del token actual.
+        Llama a 'match' para verificar la estructura de cada instrucción soportada.
+        """
         tok_type, tok_val = self.current()
 
         if tok_type == "COMMENT":

@@ -84,22 +84,9 @@ class Parser:
 # Ejemplo de uso
 # ==============================
 if __name__ == "__main__":
-    script = """
-    //** Cliente **//
-    INSERT 50
-    SELECT A4
-    PRICE
-    DISPENSE
-    CHANGE
 
-    //** Configuración **//
-    ADD_PRODUCT COFFEE
-    SET_PRICE COFFEE 25
-    SET_SPACE A4 COFFEE
-    SET_STOCK A4 100
-    STATUS
-    """
-
-    tokens = lexer(script)
-    parser = Parser(tokens)
-    parser.parse_program()
+    with open("reguex-input.txt", encoding="utf-8") as f:
+        script = f.read()
+        tokens = lexer(script)
+        parser = Parser(tokens)
+        parser.parse_program()

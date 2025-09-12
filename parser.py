@@ -85,7 +85,7 @@ class Parser:
 # ==============================
 if __name__ == "__main__":
 
-    with open("reguex-input.txt", encoding="utf-8") as f:
+    with open("input.txt", encoding="utf-8") as f:
         script = f.read()
         tokens = lexer(script)
         parser = Parser(tokens)

@@ -1,0 +1,56 @@
+<program> ::= <statement_list>
+
+<statement_list> ::= <statement>
+                   | <statement> <statement_list>
+
+<statement> ::= <client_stmt>
+              | <config_stmt>
+              | <machine_stmt>
+              | <comment>
+
+<client_stmt> ::= <insert_stmt>
+                | <balance_stmt>
+                | <select_stmt>
+                | <price_stmt>
+                | <dispense_stmt>
+                | <change_stmt>
+                | <cancel_stmt>
+
+<config_stmt> ::= <add_product_stmt>
+                | <remove_product_stmt>
+                | <set_price_stmt>
+                | <set_space_stmt>
+                | <set_stock_stmt>
+                | <list_products_stmt>
+
+<machine_stmt> ::= <set_capacity_stmt>
+                 | <set_currency_stmt>
+                 | <status_stmt>
+                 | <reset_stmt>
+
+<comment> ::= "//**" <any_text> "**//"
+
+<insert_stmt> ::= "INSERT" <number>
+<balance_stmt> ::= "BALANCE"
+<select_stmt> ::= "SELECT" <space>
+<price_stmt> ::= "PRICE"
+<dispense_stmt> ::= "DISPENSE"
+<change_stmt> ::= "CHANGE"
+<cancel_stmt> ::= "CANCEL"
+
+<add_product_stmt> ::= "ADD_PRODUCT" <product>
+<remove_product_stmt> ::= "REMOVE_PRODUCT" <product>
+<set_price_stmt> ::= "SET_PRICE" <product> <number>
+<set_space_stmt> ::= "SET_SPACE" <space> <product>
+<set_stock_stmt> ::= "SET_STOCK" <space> <number>
+<list_products_stmt> ::= "LIST_PRODUCTS"
+
+<set_capacity_stmt> ::= "SET_CAPACITY" <number>
+<set_currency_stmt> ::= "SET_CURRENCY" <product>
+<status_stmt> ::= "STATUS"
+<reset_stmt> ::= "RESET"
+
+<product> ::= [A-Z] [A-Z0-9_]*
+<space>   ::= [A-Z] [0-9]+
+<number>  ::= [0-9]+ | [0-9]+ "." [0-9]+
+<any_text> ::= (cualquier secuencia de caracteres excepto salto de línea)

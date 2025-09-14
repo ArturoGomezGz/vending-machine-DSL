@@ -1,8 +1,8 @@
 import re
 
-# ==============================
-# Regex del DSL (actualizado)
-# ==============================
+# ==============
+# Regex del DSL 
+# ==============
 
 # Palabras reservadas
 regex_keywords = re.compile(

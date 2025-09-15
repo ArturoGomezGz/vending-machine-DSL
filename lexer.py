@@ -51,3 +51,16 @@ def lexer(script: str):
             else:
                 tokens.append(("UNKNOWN", word))
     return tokens
+
+
+if __name__ == "__main__":
+    import sys
+    filename = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            script = f.read()
+        tokens = lexer(script)
+        for token in tokens:
+            print(token)
+    except FileNotFoundError:
+        print(f"Archivo no encontrado: {filename}")

@@ -91,4 +91,20 @@ class Parser:
         elif tok_val == "RESET":
             self.match("KEYWORD", "RESET")
         else:
+
             raise SyntaxError(f"Sentencia desconocida en {tok_val}")
+
+
+if __name__ == "__main__":
+    import sys
+    filename = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            script = f.read()
+        tokens = lexer(script)
+        parser = Parser(tokens)
+        parser.parse_program()
+    except FileNotFoundError:
+        print(f"Archivo no encontrado: {filename}")
+    except SyntaxError as e:
+        print(f"Error de sintaxis: {e}")
